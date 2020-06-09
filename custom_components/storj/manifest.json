@@ -1,0 +1,8 @@
+{
+  "domain": "storj",
+  "name": "storj",
+  "documentation": "https://github.com/Caizzii/home-assistant-storj",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@Caizzii"]
+}
