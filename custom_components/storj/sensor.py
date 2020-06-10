@@ -58,7 +58,7 @@ class StorjSensor(Entity):
         attributes = {}
         card_json = []
 
-        stats = self.get_infos(self.protocol, self.host, self.port, self.token)
+        stats = self.get_infos()
 
         init = {}
         """Initialized JSON Object"""
@@ -70,15 +70,14 @@ class StorjSensor(Entity):
         card_json.append(init)
 
         attributes['data'] = json.dumps(card_json)
-        if stats["success"].__eq__("True"):
+        if stats["nodeID"]:
             self._state = "Success"
         else:
             self._state = "Failure"
         self.data = attributes
 
-    def get_infos(self, proto, host, port, token):
+    def get_infos(self):
         url = "{0}://{1}:{2}/api/sno".format(
-            proto,
-            host, port)
+            self.protocol, self.host, self.port)
         stats = requests.get(url).json()
         return stats
